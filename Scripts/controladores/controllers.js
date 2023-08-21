@@ -1,12 +1,12 @@
-import{datosParaApi} from "./Scripts/Inicio.js"
-let armarApi = await datosParaApi()
+
+let armarApi =[1,"any","any",2] // info temporal// se debe traer la informacion de inicio.js y reemplazarla
 
 let numero = armarApi[0]
 let dificultad = armarApi[1]
 let tipoRespuesta = armarApi[2]
 let categoria = ""; //debe ser un numero
-const triviaApi = `https://opentdb.com/api.php?amount=${numero}&category=${categoria}&difficulty=${dificultad}&type=${tipoRespuesta}`;
-
+// Original ------ const triviaApi = `https://opentdb.com/api.php?amount=${numero}&category=${categoria}&difficulty=${dificultad}&type=${tipoRespuesta}`;
+const triviaApi = `https://opentdb.com/api.php?amount=1`
 export async function obtenerPreguntas() {
  
     let preguntas = await fetch(triviaApi);

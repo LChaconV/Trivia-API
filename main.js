@@ -59,8 +59,9 @@ for (let i = 0; i < informacion.length; i++) {
 
   for (let i = 0; i < opcionesSort.length; i++) {
      respuestas.innerHTML +=
-       `<button id="btn-r${i}" class="nomRespuestas btn btn-outline-light" onclick="revisarInfo(${i})" >${opcionesSort[i]}</button>
+       `<button id="btn-r${i}" class="nomRespuestas btn btn-outline-light" onclick="revisarInfo(${i})" value="${opcionesSort[i]}">${opcionesSort[i]}</button>
      `;
+     
   }
  
   opciones = [];
