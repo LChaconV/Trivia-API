@@ -1,6 +1,7 @@
 
 //--------------------------Armar url API ----------------------//
-export function urlAPI (armarApi) {
+let preguntas=""
+export async function urlAPI (armarApi) {
 //1.Verificar que los valores en any o NaN queden vacios.  
   for (let index = 0; index < armarApi.length; index++) {
     if (armarApi[index]==="any"|| armarApi[index]==="NaN")//Revisar cuando categoria = NaN
@@ -15,9 +16,39 @@ export function urlAPI (armarApi) {
   let tipoRespuesta = armarApi[3]
  
   let triviaApi = `https://opentdb.com/api.php?amount=${numero}&category=${categoria}&difficulty=${dificultad}&type=${tipoRespuesta}`;
-  console.log(triviaApi)
-  return obtenerPreguntas(triviaApi)
-  }
+  preguntas = await fetch(triviaApi);
+  let preguntasParseadas = await preguntas.json();
+  //console.log(preguntasParseadas)
+  let preguntasArray=preguntasParseadas.results
+  //console.log("------------------------------------------------")
+  console.log("Preguntas en la funcion urlAPI ",preguntasArray)
+  return preguntasArray;}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  //console.log(triviaApi)
+  //return obtenerPreguntas(triviaApi)
+  /*
 // 3. Parsear información de la API
 export async function obtenerPreguntas(triviaApi) {
   console.log("Ejecutando Obtener preguntas: ", triviaApi)
@@ -32,4 +63,4 @@ export async function obtenerPreguntas(triviaApi) {
 //--------------------------------------------------------------------------------------//
 
 
-
+*/
