@@ -23,7 +23,12 @@ header > div {
   align-items: center;
 
   padding-top: 20px;
+  padding-bottom: 20px;
 
+}
+.Btn-Inicio{
+  padding: 10px;
+  
 }
 select {
   
