@@ -14,7 +14,7 @@ export async function urlAPI (armarApi) {
   let categoria =(armarApi[1])
   let dificultad = armarApi[2]
   let tipoRespuesta = armarApi[3]
- 
+  
   let triviaApi = `https://opentdb.com/api.php?amount=${numero}&category=${categoria}&difficulty=${dificultad}&type=${tipoRespuesta}`;
   preguntas = await fetch(triviaApi);
   let preguntasParseadas = await preguntas.json();
