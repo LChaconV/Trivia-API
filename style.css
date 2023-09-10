@@ -1,7 +1,8 @@
 body {
   display: flex;
   flex-direction: row;
- 
+  height: 100vh;
+  width: 100vw;
 
 }
 header {
@@ -11,13 +12,26 @@ header {
   background: rgb(98,98,115);
 background: linear-gradient(90deg, rgba(98,98,115,1) 3%, rgba(208,208,217,1) 98%);
   width: 30%;
+  height: 100%;
   
 }
 main {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   display: none;
-  
+  width: 70%;
+  height: 100%;
+  background-color: #ff3cac;
+  background-image: linear-gradient(
+    0deg,
+    #ff3cac 0%,
+    #784ba0 50%,
+    #2b86c5 100%
+  );
+}
+footer{
+  height: 0%;
 }
 header > div {
   display: flex;
@@ -29,8 +43,10 @@ header > div {
 
 }
 .Btn-Inicio{
+align-items: center;
+  width: 70%;
   padding: 10px;
-  
+ margin-top: 40px;
 }
 select {
   
@@ -49,20 +65,18 @@ select {
 }
 .pregunta {
   display: flex;
- 
+ justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
-  
-  padding-top: 5%;
+  padding: 50px 20px ;
   font-size: x-large;
 }
 .botones {
-  height: 80%;
+ 
   display: flex;
- flex-direction: column;
+  flex-direction: column;
   gap: 50px;
   align-items: center;
-  justify-content: center;
- columns: 4 20px;
+  justify-content:center ;
  padding-bottom: 10px;
   
 }
@@ -72,15 +86,20 @@ select {
  
   display: flex;
   flex-direction: column;
- 
+}
+.div-siguiente{
+  display: flex;
+justify-content: end;
+padding-bottom: 10%;
+padding-right: 10%;
 
-  background-color: #ff3cac;
-  background-image: linear-gradient(
-    0deg,
-    #ff3cac 0%,
-    #784ba0 50%,
-    #2b86c5 100%
-  );
-  padding: 50px;
-  
+
+
+}
+
+.siguiente{
+  gap: 60px;
+  width: 200px;
+  padding: 10px;
+
 }

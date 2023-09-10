@@ -7,14 +7,19 @@ let selectCategoria = document.getElementById("form-control");
 let selectDificultad = document.getElementById("selectDificultad");
 let selectTipo = document.getElementById("selectTipo");
 let btnInicio = document.getElementById("Btn-Inicio");
-let Pantalla = document.getElementById("main")
-let siguiente = document.getElementById("siguiente")
+let btnr0 = document.getElementById("btn-r0")
+let btnr1 = document.getElementById("btn-r1")
+let btnr2 = document.getElementById("btn-r2")
+let btnr3 = document.getElementById("btn-r3")
+
+let Pantalla = document.getElementById("main");
+let siguiente = document.getElementById("siguiente");
 
 let cartas = document.getElementById("cards");
 //-----------------------variables locales-------------------//
 let API = "";
 let informacion = "";
-let varNext=true;
+let varNext = true;
 //-----------------------funciones-------------------------//
 // capturar la informacion de los select del header del html a traves del boton btnInicio
 async function datosParaApi() {
@@ -28,12 +33,13 @@ async function datosParaApi() {
 }
 
 // crear las cartas que contienen las preguntas y las respuestas
+/*
 async function cartaPreguntas(informacion) {
   cartas.innerHTML = "";
   for (let i = 0; i < informacion.length; i++) {
-    
-   //if (varNext==true){
-   //varNext =false
+    console.log("bucle for antes del if",i)
+   if (varNext==true){
+   varNext =false
     let opciones = [];
     let opcionesSort = "";
     // 2- Verificar si el tipo de prefunta es multipe o falso y verdadero//
@@ -75,28 +81,85 @@ async function cartaPreguntas(informacion) {
       
       
     }
-    /*
- 
-    siguiente.onclick = await function(){
-      console.log("hice clic")
-      varNext= true
-      return varNext
-    }
-    console.log(i)*/
+   
   }}
-//}
+}
+*/
+
+// PRUEBA DE CHAT GPT
+async function cartaPreguntas(informacion) {
+  //cartas.innerHTML = "";
+  let i = 0;
+
+  while (i < informacion.length) {
+    console.log("bucle for antes del if", i);
+
+    if (varNext === true) {
+      
+      varNext = false;
+      let opciones = [];
+      let opcionesSort = "";
+
+      if (informacion[i].type === "multiple") {
+        opciones.push(informacion[i].correct_answer);
+        for (let a = 0; a < informacion[i].incorrect_answers.length; a++) {
+          opciones.push(informacion[i].incorrect_answers[a]);
+        }
+      } else {
+        opciones.push("False", "True");
+      }
+
+      opcionesSort = opciones.sort(function () {
+        return Math.random();
+      });
+
+      cartas.innerHTML += `
+        <div class="barSuper">
+          <p class="nomCategoria">${informacion[i].category}</p>
+          <p class="nomdificultad">Dificultad: ${informacion[i].difficulty}</p>
+        </div>
+        <p class="pregunta">${informacion[i].question}</p>`;
+
+        
+      for (let j = 0; j < opcionesSort.length; j++) {
+        cartas.innerHTML += `   
+          <div class="botones">
+            <button id="btn-r${j}" class="nomRespuestas btn btn-outline-light" value="${opcionesSort[j]}">${opcionesSort[j]}</button>
+          </div>`;
+      }
+   
+
+   
 
 
-
-
-
+      // Esperar hasta que se haga clic en el botón "siguiente"
+      await new Promise((resolve) => {
+        siguiente.addEventListener("click", () => {
+          varNext = true;
+          cartas.innerHTML = "";
+          resolve();
+        });
+      });
+      i++;
+      if (i===informacion.length){
+        main.innerHTML =`<h1>PREGUNTAS FINALIZADAS</h1>`
+        i++;
+      }
+    }
+  }
+}
 
 btnInicio.addEventListener("click", async function (event) {
   API = await datosParaApi();
   informacion = await urlAPI(API);
-  Pantalla.style.display ="flex"
+  Pantalla.style.display = "flex";
   cartaPreguntas(informacion);
-  selectCategoria.value="any"
-  selectDificultad.value="any"
-  selectTipo.value="any"
+  selectCategoria.value = "any";
+  selectDificultad.value = "any";
+  selectTipo.value = "any";
 });
+
+function clicRespuesta (boton) {
+  let seleccion = boton.addEventListener.value
+  
+}
