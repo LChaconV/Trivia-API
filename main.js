@@ -11,11 +11,10 @@ let btnr0 = document.getElementById("btn-r0")
 let btnr1 = document.getElementById("btn-r1")
 let btnr2 = document.getElementById("btn-r2")
 let btnr3 = document.getElementById("btn-r3")
-
 let Pantalla = document.getElementById("main");
 let siguiente = document.getElementById("siguiente");
-
 let cartas = document.getElementById("cards");
+let header=document.getElementById("header")
 //-----------------------variables locales-------------------//
 let API = "";
 let informacion = "";
@@ -33,13 +32,11 @@ async function datosParaApi() {
 }
 
 // crear las cartas que contienen las preguntas y las respuestas
-/*
+
 async function cartaPreguntas(informacion) {
   cartas.innerHTML = "";
   for (let i = 0; i < informacion.length; i++) {
-    console.log("bucle for antes del if",i)
-   if (varNext==true){
-   varNext =false
+  
     let opciones = [];
     let opcionesSort = "";
     // 2- Verificar si el tipo de prefunta es multipe o falso y verdadero//
@@ -83,13 +80,15 @@ async function cartaPreguntas(informacion) {
     }
    
   }}
-}
-*/
 
+
+
+/*
+let i = 0;
 // PRUEBA DE CHAT GPT
 async function cartaPreguntas(informacion) {
   //cartas.innerHTML = "";
-  let i = 0;
+  
 
   while (i < informacion.length) {
     console.log("bucle for antes del if", i);
@@ -140,15 +139,20 @@ async function cartaPreguntas(informacion) {
           resolve();
         });
       });
-      i++;
-      if (i===informacion.length){
+      if (i===informacion.length-1){
         main.innerHTML =`<h1>PREGUNTAS FINALIZADAS</h1>`
-        i++;
+      i=i+2;
+        console.log("valor length del vector=",informacion.length)
+        console.log("valor i= ",i)
       }
+console.log("valor i, dentro del primer if",i)
     }
+
+      i++;
+      
   }
 }
-
+*/
 btnInicio.addEventListener("click", async function (event) {
   API = await datosParaApi();
   informacion = await urlAPI(API);
@@ -159,7 +163,5 @@ btnInicio.addEventListener("click", async function (event) {
   selectTipo.value = "any";
 });
 
-function clicRespuesta (boton) {
-  let seleccion = boton.addEventListener.value
-  
-}
+
+
